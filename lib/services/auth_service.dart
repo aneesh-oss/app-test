@@ -1,9 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class AuthService {
+
+  static final String baseUrl = Platform.isMacOS
+      ? "http://192.168.1.4:5000/api/auth"
+      : "http://10.0.2.2:5000/api/auth";
   // Use 10.0.2.2 if you're on Android emulator and backend is running locally
-  static const baseUrl = "http://10.0.2.2:5000/api/auth"; 
+  //static const baseUrl = "http://10.0.2.2:5000/api/auth"; 
   // static const baseUrl = "http://172.31.0.159:5000/api/auth";
 
   static Future<Map<String, dynamic>> signIn(String email, String password) async {
